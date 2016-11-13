@@ -14,7 +14,7 @@ class StockInfo:
             print(e)
             self.data = pd.DataFrame()
 
-    def data(self):
+    def get_data(self):
         return self.data
 
     def price_filter(self, min_price=0, max_price=1000):
@@ -24,4 +24,7 @@ class StockInfo:
         pass
 
     def list_date_filter(self, start_date='19900101', end_date='20500101'):
-        pass
+        cond = (self.data['listDate'] > start_date) & (self.data['listDate'] < end_date)
+        self.data = self.data.ix[cond,]
+        return  self
+
