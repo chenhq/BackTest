@@ -8,7 +8,7 @@ class StockInfo:
 
     def __init__(self, filename='all_tickers.csv'):
         try:
-            df = pd.read_csv(self.__class__.kline_1day_dir + filename)
+            df = pd.read_csv(self.__class__.stock_info_dir + filename)
             self.data = df[['secID', 'ticker', 'exchangeCD', 'secShortName', 'listStatusCD', 'listDate']]
         except Exception as e:
             print(e)
