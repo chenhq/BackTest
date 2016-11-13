@@ -11,6 +11,7 @@ class MarketData:
     base_info_dir = base_dir + "/base_info/"
     kline_1day_dir = base_dir + "/interday/kline_1day/"
     kline_1min_dir = base_dir + "/intraday/kline_1min/"
+    tick_dir = base_dir + "/data/intraday/tick"
 
     @classmethod
     def get_kline_1day(cls, stk, str_month):
@@ -60,7 +61,18 @@ class MarketData:
 
     @classmethod
     def get_tick(cls, stk, str_date):
-        pass
+        try:
+            file = cls.tick_dir + str_date + "/" + stk + ".csv"
+            df = pd.read_csv(file, parse_dates={'datetime': [1, 2]},
+                             date_parser=cls.parse_datetime, index_col='datetime')
+            df.rename(columns={'windcode': 'code'}, inplace=True)
+            df['code'] = df['code'].map(lambda x: x[:6])
+            result = df
+        except Exception as e:
+            print(e)
+            result = pd.DataFrame()
+        return result
+
 
     @classmethod
     def get_order(cls, stk, str_date):
