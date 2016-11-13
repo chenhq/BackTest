@@ -11,7 +11,7 @@ class MarketData:
     base_info_dir = base_dir + "/base_info/"
     kline_1day_dir = base_dir + "/interday/kline_1day/"
     kline_1min_dir = base_dir + "/intraday/kline_1min/"
-    tick_dir = base_dir + "/intraday/tick"
+    tick_dir = base_dir + "/intraday/tick/"
 
     @classmethod
     def get_kline_1day(cls, stk, str_month):
