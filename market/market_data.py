@@ -36,7 +36,7 @@ class MarketData:
 
             hour = int(str_time[:-7])
             minute = int(str_time[-7:-5])
-            second = int(int(str_time[-5:]) / 100000)
+            second = int(int(str_time[-5:-3]))
 
             dt = datetime(year, month, day, hour, minute, second)
         except Exception as e:
